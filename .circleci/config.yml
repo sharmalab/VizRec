@@ -28,7 +28,7 @@ jobs:
             virtualenv venv
             source venv/bin/activate
             pip install -r requirements.txt
-            flake8 . --exclude=.venv --statistics
+            flake8 . --exclude=venv --statistics
       - run:
           command: |
             pipenv run "python manage.py test"
