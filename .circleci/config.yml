@@ -1,0 +1,36 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/VizRec
+    docker:
+      - image: circleci/python:3.6
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
+    steps:
+      - checkout
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
+      - restore_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+      - run:
+          command: |
+            sudo pip install pipenv
+            pipenv install
+      - save_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          paths:
+            - ".venv"
+            - "/usr/local/bin"
+            - "/usr/local/lib/python3.6/site-packages"
+      - run:
+          name: lint code
+          command: |
+            virtualenv venv
+            source venv/bin/activate
+            pip install -r requirements.txt
+            flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
+destination: tr1
