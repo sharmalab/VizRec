@@ -32,6 +32,7 @@ jobs:
       - run:
           command: |
             echo "test"
+            py.test -v tests/test_sample.py
       - store_test_results:
           path: test-results
       - store_artifacts:
