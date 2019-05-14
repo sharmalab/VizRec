@@ -14,7 +14,7 @@ jobs:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
       - run:
           command: |
-            sudo pip install pipenv
+            sudo pip3 install pipenv
             pipenv install
       - save_cache:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
@@ -27,12 +27,15 @@ jobs:
           command: |
             virtualenv venv
             source venv/bin/activate
-            pip install -r requirements.txt
-            flake8 . --exclude=venv,.venv --statistics
+            pip3 install pytest
+            pip3 install flake8
+            flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - run:
           command: |
             echo "test"
-            py.test -v tests/test_sample.py
+            virtualenv venv
+            source venv/bin/activate
+            pytest
       - store_test_results:
           path: test-results
       - store_artifacts:
