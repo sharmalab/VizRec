@@ -6,6 +6,9 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+pytest = "==3.2.2"
+pytest-cov = "==2.5.1"
+pytest-dependency = "==0.3.2"
 entrypoints = "==0.3"
 flake8 = "==3.7.7"
 mccabe = "==0.6.1"
