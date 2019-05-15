@@ -27,14 +27,13 @@ jobs:
           command: |
             virtualenv venv
             source venv/bin/activate
-            pip3 install pytest
             pip3 install flake8
-            flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+            flake8 . --count --exit-zero --max-complexity=10 --max-line-length=79 --statistics
       - run:
           command: |
-            echo "test"
             virtualenv venv
             source venv/bin/activate
+            pip3 install pytest
             pytest tests/test_sample.py
       - store_test_results:
           path: test-results
