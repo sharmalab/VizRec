@@ -34,7 +34,7 @@ jobs:
             virtualenv venv
             source venv/bin/activate
             pip3 install pytest
-            pytest tests/test_sample.py
+            pytest tests/
       - store_test_results:
           path: test-results
       - store_artifacts:
