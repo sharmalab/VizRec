@@ -30,6 +30,7 @@ jobs:
             pip3 install flake8
             flake8 . --count --exit-zero --max-complexity=10 --statistics
       - run:
+          name: tests
           command: |
             virtualenv venv
             source venv/bin/activate
