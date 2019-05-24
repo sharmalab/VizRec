@@ -17,27 +17,27 @@ def json_check():
         	"name": req.get("name")
         }
         res=make_response(jsonify(response),200)
-        print('200')
+        app.logger.info('200')
     else:
     	res=make_response(jsonify({'message':'No Json received'}),400)
-    	print('400')
+    	app.logger.info('400')
     return res
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-app.config["FILE_UPLOADS"] = "/home/vinay/gsoc19/youapp/app/static/img/"
+app.config["FILE_UPLOADS"] = "/static/img/"
 app.config["ALLOWED_FILE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 app.config["MAX_FILE_FILESIZE"] = 0.5 * 1024 * 100000000024
 
-def allowed_image(filename):
+def allowed_file(filename):
     if not "." in filename:
         return False
     ext = filename.rsplit(".", 1)[1]
-    if ext.upper() in app.config["ALLOWED_IMAGE_EXTENSIONS"]:
+    if ext.upper() in app.config["allowed_file_EXTENSIONS"]:
         return True
     else:
         return False
 
-def allowed_image_filesize(filesize):
+def allowed_file_filesize(filesize):
     if int(filesize) <= app.config["MAX_IMAGE_FILESIZE"]:
         return True
     else:
@@ -48,17 +48,17 @@ def upload_file():
     if request.method == "POST":
         if request.files:
             if "filesize" in request.cookies:
-                if not allowed_image_filesize(request.cookies["filesize"]):
-                    print("Filesize exceeded maximum limit")
+                if not allowed_file_filesize(request.cookies["filesize"]):
+                    app.logger.info("Filesize exceeded maximum limit")
                     return redirect(request.url)
-                image = request.files["file"]
-                if allowed_image(image.filename):
-                    filename = secure_filename(image.filename)
-                    image.save(os.path.join(app.config["IMAGE_UPLOADS"], filename))
-                    print("Image saved")
+                file = request.files["file"]
+                if allowed_file(file.filename):
+                    filename = secure_filename(file.filename)
+                    file.save(os.path.join(app.config["IMAGE_UPLOADS"], filename))
+                    app.logger.info("Image saved")
                     return redirect(request.url)
                 else:
-                    print("That file extension is not allowed")
+                    app.logger.info("That file extension is not allowed")
                     return redirect(request.url)
 
     return render_template("public/upload_file.html")
