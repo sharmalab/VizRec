@@ -7,6 +7,6 @@
 
 #### Design
 
-![Design](../imgs/system_architecture.png)
+![Design](_static/system_architecture.png)
 
 ---
