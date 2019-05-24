@@ -1,11 +1,12 @@
 ## System Architecture
 
-- This is a brief outlook on architecture of the system and with different components and dotted ones are serverless
+- This is the outlook of the system and with different components and dotted ones are serverless
+
 
 ---
 
-#### System Architecture
+#### Design
 
-![System Architecture](../imgs/system architecture.png)
+![Design](../imgs/system_architecture.png)
 
 ---
