@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template,request,redirect,jsonify,
+from flask import render_template, request, redirect, jsonify
 from werkzeug.utils import secure_filename
 import os
 
