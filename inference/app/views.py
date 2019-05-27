@@ -1,6 +1,5 @@
 from app import app
-from flask import render_template, request, redirect, jsonify, make_response, url_for
-from flask import request, redirect
+from flask import render_template,request,redirect,jsonify,
 from werkzeug.utils import secure_filename
 import os
 
