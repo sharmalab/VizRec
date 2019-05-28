@@ -1,7 +1,7 @@
 # [VizRec System Architecture]
 
 * Status: [proposed] 
-* Deciders: [Ashish Sharma,Ganesh Iyer,Sapoon Dutta,Vinay Pandramish] 
+* Deciders: [Ganesh Iyer, Vinay Pandramish] 
 * Date: [2019-05-28]
 
 Technical Story: [https://github.com/sharmalab/VizRec/issues/19]
