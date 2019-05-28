@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, redirect, jsonify
+from flask import render_template, request, jsonify
 from werkzeug.utils import secure_filename
 import os
 
@@ -7,13 +7,6 @@ import os
 @app.route("/")
 def index():
     return render_template("public/index.html")
-
-
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-UPLOAD_FOLDER = os.path.join(APP_ROOT, 'static', 'file')
-app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
-app.config["ALLOWED_EXTENSIONS"] = ["JSON"]
-app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 100024
 
 
 def allowed_file(filename):
@@ -39,7 +32,6 @@ def upload_file():
         if request.files:
             if "filesize" in request.cookies:
                 if not allowed_filesize(request.cookies["filesize"]):
-                    app.logger.info('not saved')
                     return jsonify({'message': 'Too large size,400'})
             else:
                 file = request.files["file"]
@@ -49,10 +41,8 @@ def upload_file():
                         secure_filename(
                             file.filename))
                     file.save(full_filename)
-                    app.logger.info('saved')
                     return jsonify({'message': 'Json received,200'})
                 else:
-                    app.logger.info('not saved')
                     return jsonify(
                         {'message': 'File extension not allowed,400'})
     return render_template("public/upload_file.html")
