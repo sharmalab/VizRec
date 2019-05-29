@@ -28,7 +28,7 @@ def allowed_filesize(filesize):
         return False
 
 
-@app.route("/upload_file", methods=["GET", "POST"])
+@app.route("/upload_file", methods=["POST"])
 def upload_file():
     if request.method == 'POST':
         if request.files:
@@ -42,8 +42,6 @@ def upload_file():
                         app.config['UPLOAD_FOLDER'],
                         secure_filename(
                             f1.filename))
-                    print('lel')
-                    print(full_filename)
                     f1.save(full_filename)
                     return jsonify({'message': 'Json received,200'})
                 else:
