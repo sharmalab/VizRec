@@ -36,13 +36,15 @@ def upload_file():
                 if not allowed_filesize(request.cookies["filesize"]):
                     return jsonify({'message': 'Too large size,400'})
             else:
-                file = request.files["file"]
-                if allowed_file(file.filename):
+                f1 = request.files["file"]
+                if allowed_file(f1.filename):
                     full_filename = os.path.join(
                         app.config['UPLOAD_FOLDER'],
                         secure_filename(
-                            file.filename))
-                    file.save(full_filename)
+                            f1.filename))
+                    print('lel')
+                    print(full_filename)
+                    f1.save(full_filename)
                     return jsonify({'message': 'Json received,200'})
                 else:
                     return jsonify(
