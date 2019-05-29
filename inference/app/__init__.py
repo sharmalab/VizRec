@@ -1,6 +1,5 @@
 from flask import Flask
 import os
-#from app import app
 from flask import render_template, request, jsonify
 from werkzeug.utils import secure_filename
 
