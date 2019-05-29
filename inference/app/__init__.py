@@ -1,6 +1,5 @@
-from flask import Flask
 import os
-from flask import render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__, instance_relative_config=True)
