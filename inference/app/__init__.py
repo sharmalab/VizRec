@@ -1,4 +1,5 @@
 import os
+import json
 from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 
@@ -47,3 +48,4 @@ def uploadfile():
                     return jsonify(
                         {'message': 'File extension not allowed,400'})
     return render_template("public/upload_file.html")
+
