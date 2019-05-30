@@ -6,7 +6,6 @@ app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.TestingConfig')
 
 
-@app.route("/")
 def index():
     return render_template("public/index.html")
 
