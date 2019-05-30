@@ -28,7 +28,7 @@ def allowed_filesize(filesize):
 
 
 @app.route("/upload_file", methods=["POST"])
-def upload_file():
+def uploadfile():
     if request.method == 'POST':
         if request.files:
             if "filesize" in request.cookies:
