@@ -48,4 +48,3 @@ def uploadfile():
                     return jsonify(
                         {'message': 'File extension not allowed,400'})
     return render_template("public/upload_file.html")
-
