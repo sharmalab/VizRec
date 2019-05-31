@@ -1,9 +1,15 @@
 import os
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, make_response
+import werkzeug
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.TestingConfig')
+
+
+@app.errorhandler(werkzeug.exceptions.BadRequest)
+def handle_bad_request(e):
+    return 'bad request!', 400
 
 
 def index():
@@ -33,7 +39,7 @@ def uploadfile():
         if request.files:
             if "filesize" in request.cookies:
                 if not allowed_filesize(request.cookies["filesize"]):
-                    return jsonify({'message': 'Too large size,400'})
+                    return handle_bad_request()
             else:
                 f1 = request.files["file"]
                 if allowed_file(f1.filename):
@@ -42,8 +48,7 @@ def uploadfile():
                         secure_filename(
                             f1.filename))
                     f1.save(full_filename)
-                    return jsonify({'message': 'Json received,200'})
+                    return make_response(jsonify(request.files), 200)
                 else:
-                    return jsonify(
-                        {'message': 'File extension not allowed,400'})
-    return render_template("public/upload_file.html")
+                    return handle_bad_request()
+    return make_response(jsonify(request.files), 200)
