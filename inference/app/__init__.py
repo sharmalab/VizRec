@@ -1,10 +1,12 @@
 import os
 from flask import Flask, render_template, request, jsonify, make_response
+# from flask_pymongo import PyMongo
 import werkzeug
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.TestingConfig')
+# mongo = PyMongo(app)
 
 
 @app.errorhandler(werkzeug.exceptions.BadRequest)
