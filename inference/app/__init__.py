@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.TestingConfig')
-mongo = PyMongo(app,uri="mongodb://localhost:27017/customerapp")
+mongo = PyMongo(app, uri="mongodb://localhost:27017/customerapp")
 
 
 @app.errorhandler(werkzeug.exceptions.BadRequest)
