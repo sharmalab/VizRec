@@ -1,12 +1,17 @@
 import os
 from flask import Flask, render_template, request, jsonify, make_response
-from flask_pymongo import PyMongo
 import werkzeug
 from werkzeug.utils import secure_filename
+import pymongo
+import json
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.TestingConfig')
-mongo = PyMongo(app, uri="mongodb://localhost:27017/customerapp")
+URI = 'mongodb://127.0.0.1:27017'
+client = pymongo.MongoClient(URI)
+db = client['test']
+vizrec = db.vizrec
+print(vizrec)
 
 
 @app.errorhandler(werkzeug.exceptions.BadRequest)
@@ -48,7 +53,10 @@ def uploadfile():
                 secure_filename(
                     f1.filename))
             f1.save(full_filename)
-            mongo.save_file(f1.filename, f1)
+            with open(full_filename) as json_file:
+                json_data = json.load(json_file)
+                vizrec.insert(json_data)
+                # print('yaay!')
             return make_response(jsonify(f1.filename), 200)
         else:
             return handle_bad_request('e')
