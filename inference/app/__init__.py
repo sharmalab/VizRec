@@ -10,7 +10,7 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/customerapp")
 
 
 @app.errorhandler(werkzeug.exceptions.BadRequest)
-def handle_bad_request():
+def handle_bad_request(e):
     return 'bad request!', 400
 
 
@@ -40,7 +40,7 @@ def uploadfile():
     if request.method == 'POST':
         if "filesize" in request.cookies:
             if not allowed_filesize(request.cookies["filesize"]):
-                return handle_bad_request()
+                return handle_bad_request('e')
         f1 = request.files["file"]
         if allowed_file(f1.filename):
             full_filename = os.path.join(
@@ -51,4 +51,4 @@ def uploadfile():
             mongo.save_file(f1.filename, f1)
             return make_response(jsonify(f1.filename), 200)
         else:
-            return handle_bad_request()
+            return handle_bad_request('e')
