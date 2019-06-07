@@ -1,6 +1,7 @@
 import os
 import pymongo
 
+
 class Config(object):
     DEBUG = False
     TESTING = False
