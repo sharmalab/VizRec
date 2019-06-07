@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+pymongo = "==3.8.0"
 click = "==7.0"
 itsdangerous = "==1.1.0"
 pytest = "==3.2.2"

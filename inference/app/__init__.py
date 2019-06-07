@@ -2,9 +2,16 @@ import os
 from flask import Flask, render_template, request, jsonify, make_response
 import werkzeug
 from werkzeug.utils import secure_filename
+import pymongo
+import json
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.TestingConfig')
+URI = 'mongodb://127.0.0.1:27017'
+client = pymongo.MongoClient(URI)
+db = client['test']
+vizrec = db.vizrec
+# print(vizrec)
 
 
 @app.errorhandler(werkzeug.exceptions.BadRequest)
@@ -36,19 +43,20 @@ def allowed_filesize(filesize):
 @app.route("/upload_file", methods=["POST"])
 def uploadfile():
     if request.method == 'POST':
-        if request.files:
-            if "filesize" in request.cookies:
-                if not allowed_filesize(request.cookies["filesize"]):
-                    return handle_bad_request()
-            else:
-                f1 = request.files["file"]
-                if allowed_file(f1.filename):
-                    full_filename = os.path.join(
-                        app.config['UPLOAD_FOLDER'],
-                        secure_filename(
-                            f1.filename))
-                    f1.save(full_filename)
-                    return make_response(jsonify(request.files), 200)
-                else:
-                    return handle_bad_request()
-    return make_response(jsonify(request.files), 200)
+        if "filesize" in request.cookies:
+            if not allowed_filesize(request.cookies["filesize"]):
+                return handle_bad_request('e')
+        f1 = request.files["file"]
+        if allowed_file(f1.filename):
+            full_filename = os.path.join(
+                app.config['UPLOAD_FOLDER'],
+                secure_filename(
+                    f1.filename))
+            f1.save(full_filename)
+            with open(full_filename) as json_file:
+                json_data = json.load(json_file)
+                vizrec.insert(json_data)
+                # print('yaay!')
+            return make_response(jsonify(f1.filename), 200)
+        else:
+            return handle_bad_request('e')
