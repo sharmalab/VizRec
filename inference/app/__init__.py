@@ -47,7 +47,7 @@ def uploadfile():
                 app.config['UPLOAD_FOLDER'],
                 secure_filename(
                     f1.filename))
-            f1.save(full_filename)
+            # f1.save(full_filename)
             with open(full_filename) as json_file:
                 json_data = json.load(json_file)
                 app.config["VIZREC"].insert(json_data)
