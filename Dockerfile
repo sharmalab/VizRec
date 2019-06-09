@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM python:3.5
 
 MAINTAINER Vinay
 RUN apt-get update -y && \

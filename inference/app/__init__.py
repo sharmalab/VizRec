@@ -7,7 +7,7 @@ import json
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.TestingConfig')
-URI = 'mongodb://127.0.0.1:27017'
+URI = 'mongodb://127.0.0.1:5000'
 client = pymongo.MongoClient(URI)
 db = client['test']
 vizrec = db.vizrec
