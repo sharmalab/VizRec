@@ -1,0 +1,11 @@
+web:
+    build: .
+    command: python3 -u run.py
+    ports:
+        - "5000:5000"
+    volumes:
+        - .:/VizRec
+    links:
+        - db
+db:
+    image: mongo:3.8.0

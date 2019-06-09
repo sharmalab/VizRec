@@ -7,5 +7,5 @@ WORKDIR /inference/app
 COPY . /inference/app
 RUN pip3 install -r requirements.txt
 EXPOSE 5000
-ENTRYPOINT [ "python3" ]
-CMD [ "inference/run.py" ]
+ENTRYPOINT ["python3"]
+CMD ["inference/run.py"]
