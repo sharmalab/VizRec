@@ -19,4 +19,4 @@ def test_uploadfile():
     try:
         client.post('/upload_file', data=data)
     except DebugFilesKeyError as e:
-        pass
+        print(e)
