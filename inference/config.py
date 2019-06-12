@@ -1,4 +1,5 @@
 import os
+import pymongo
 
 
 class Config(object):
@@ -28,3 +29,7 @@ class TestingConfig(Config):
     UPLOAD_FOLDER = os.path.join(APP_ROOT, 'app', 'static')
     ALLOWED_EXTENSIONS = ["JSON"]
     MAX_CONTENT_LENGTH = 16 * 1024 * 100024
+    # URI = 'mongodb://127.0.0.1:5000'
+    CLIENT = pymongo.MongoClient('172.17.0.1', 27017)
+    DB = CLIENT['test']
+    VIZREC = DB.vizrec

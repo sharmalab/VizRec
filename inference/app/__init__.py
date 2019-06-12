@@ -7,11 +7,6 @@ import json
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.TestingConfig')
-# URI = 'mongodb://127.0.0.1:5000'
-client = pymongo.MongoClient('172.17.0.1', 27017)
-db = client['test']
-vizrec = db.vizrec
-# print(vizrec)
 
 
 @app.errorhandler(werkzeug.exceptions.BadRequest)
@@ -55,7 +50,7 @@ def uploadfile():
             f1.save(full_filename)
             with open(full_filename) as json_file:
                 json_data = json.load(json_file)
-                vizrec.insert(json_data)
+                app.config["VIZREC"].insert(json_data)
             return make_response(jsonify(f1.filename), 200)
         else:
             return handle_bad_request('e')
