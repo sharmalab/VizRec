@@ -1,6 +1,6 @@
 web:
     build: .
-    command: python -u inference/run.py
+    command: -u inference/run.py
     ports:
         - "5000:5000"
     volumes:
@@ -8,4 +8,4 @@ web:
     links:
         - vizrec
 vizrec:
-    image: mongo:3.0.2
+    image: mongo:latest
