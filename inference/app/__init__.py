@@ -2,7 +2,6 @@ import os
 from flask import Flask, render_template, request, jsonify, make_response
 import werkzeug
 from werkzeug.utils import secure_filename
-import pymongo
 import json
 
 app = Flask(__name__, instance_relative_config=True)
