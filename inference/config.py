@@ -33,3 +33,4 @@ class TestingConfig(Config):
     CLIENT = pymongo.MongoClient('172.17.0.1', 27017)
     DB = CLIENT['test']
     VIZREC = DB.vizrec
+    HOST = '0.0.0.0'
