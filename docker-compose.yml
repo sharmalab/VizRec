@@ -6,6 +6,6 @@ web:
     volumes:
         - .:/inference/app
     links:
-        - vizrec
-vizrec:
-    image: mongo:latest
+        - DB
+DB:
+    image: mongo:3.4.4
