@@ -3,9 +3,14 @@ web:
     command: python -u ingestion/run.py
     ports:
         - "5000:5000"
+    environment:
+      DB_PORT_27017_TCP_ADDR: 27017
     volumes:
         - .:/ingestion/app
     links:
         - DB
 DB:
     image: mongo:3.4.4
+    container_name: "vizrec"
+    ports:
+        - "27017:27017"
