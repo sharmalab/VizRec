@@ -2,7 +2,6 @@ import os
 from flask import Flask, render_template, request, jsonify, make_response
 import werkzeug
 from werkzeug.utils import secure_filename
-import json
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.TestingConfig')
@@ -37,23 +36,19 @@ def allowed_filesize(filesize):
 @app.route("/upload_file", methods=["POST"])
 def uploadfile():
     if request.method == 'POST':
-        if "filesize" in request.cookies:
-            if not allowed_filesize(request.cookies["filesize"]):
-                return handle_bad_request('e')
-        f1 = request.files["file"]
-        if allowed_file(f1.filename):
-            full_filename = os.path.join(
-                app.config['UPLOAD_FOLDER'],
-                secure_filename(
-                    f1.filename))
-<<<<<<< HEAD:ingestion/app/__init__.py
-            f1.save(full_filename)
-=======
-            # f1.save(full_filename)
->>>>>>> master:inference/app/__init__.py
-            with open(full_filename) as json_file:
-                json_data = json.load(json_file)
-                app.config["VIZREC"].insert(json_data)
-            return make_response(jsonify(f1.filename), 200)
-        else:
-            return handle_bad_request('e')
+        if request.files:
+            if "filesize" in request.cookies:
+                if not allowed_filesize(request.cookies["filesize"]):
+                    return handle_bad_request()
+            else:
+                f1 = request.files["file"]
+                if allowed_file(f1.filename):
+                    full_filename = os.path.join(
+                        app.config['UPLOAD_FOLDER'],
+                        secure_filename(
+                            f1.filename))
+                    f1.save(full_filename)
+                    return make_response(jsonify(request.files), 200)
+                else:
+                    return handle_bad_request()
+    return make_response(jsonify(request.files), 200)
