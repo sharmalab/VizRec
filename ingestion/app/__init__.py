@@ -53,4 +53,3 @@ def uploadfile():
             return make_response(jsonify(f1.filename), 200)
         else:
             return handle_bad_request('e')
-
