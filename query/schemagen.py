@@ -34,8 +34,8 @@ p1 = '{sql:`SELECT * FROM test.zips`,'
 p2 = 'joins:{},measures:{count:{type:`count`,drillMembers: [city]}}dimensions:'
 p3 = '{city:{sql:`city`,type:`string`},state:{sql:`state`,type:`string`}}'
 n = Generator().formatstring(p1 + p2 + p3)
-print 'cube(`' + 'Zips`, {'
+print('cube(`' + 'Zips`, {')
 for i in range(1, len(n) - 1):
-    print n[i]
-print "}" + '\n'
-print "});"
+    print(n[i])
+print("}" + '\n')
+print("});")
