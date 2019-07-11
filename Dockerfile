@@ -11,11 +11,3 @@ EXPOSE 5000
 CMD ["python", "ingestion/run.py"]
 
 
-FROM node:10-alpine
-
-WORKDIR /query
-COPY package*.json ./
-RUN npm install
-COPY . /query
-
-EXPOSE 8000
