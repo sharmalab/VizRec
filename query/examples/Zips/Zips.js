@@ -48,17 +48,7 @@ cube(`Zips`, {
     pop: {
       sql: `pop`,
       type: `string`
-    },
-
-    location: {
-  		type: `geo`,
-  		latitude: {
-    		sql: `${CUBE}_loc`,
-  		},
-  		longitude: {
-    		sql: `${CUBE}_loc`
-  		}
-	}
+    }
 
   }
 });
