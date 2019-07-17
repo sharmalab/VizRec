@@ -1,16 +1,16 @@
-cubedb:
+querydb:
     image: mongo:3.4.4
     container_name: "query"
-    ports:
-        - "3307:3307"
 
 cube:
   build: .
   env_file: .env
   expose:
     - "4000"
+  ports:
+    - "4000:4000"
   volumes:
-    - /schema
+    - ./VizRec/query/schema
   command: node index.js
   links:
-    - cubedb
+    - querydb

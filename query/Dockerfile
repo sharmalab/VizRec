@@ -8,5 +8,5 @@ RUN npm install
 
 COPY . /VizRec/query
 
-EXPOSE 8000
+EXPOSE 4000
 
