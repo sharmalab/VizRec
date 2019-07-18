@@ -9,8 +9,6 @@ services:
         - "5000:5000"
     environment:
       DB_PORT: 27017
-    volumes:
-        - .:/app
     links:
         - DB
   DB:
