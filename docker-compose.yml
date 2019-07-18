@@ -1,15 +1,19 @@
-web:
-    build: .
-    command: python -u run.py
+version: '2'
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: ./ingestion/Dockerfile
+    command: python -u ingestion/run.py
     ports:
         - "5000:5000"
     environment:
-      DB_PORT_27017_TCP_ADDR: 27017
+      DB_PORT: 27017
     volumes:
         - .:/app
     links:
         - DB
-DB:
+  DB:
     image: mongo:3.4.4
     container_name: "vizrec"
     ports:
