@@ -2,8 +2,8 @@ version: '2'
 services:
   web:
     build: 
-      context: .
-      dockerfile: ./ingestion/Dockerfile
+      context: ./ingestion
+      dockerfile: Dockerfile
     command: python -u ingestion/run.py
     ports:
         - "5000:5000"
@@ -16,3 +16,19 @@ services:
     container_name: "vizrec"
     ports:
         - "27017:27017"
+  querydb:
+    image: mongo:3.4.4
+    container_name: "query"
+
+  cube:
+    build: 
+      context: ./query
+      dockerfile: Dockerfile
+    env_file: ./query/.env
+    expose:
+        - "4000"
+    ports:
+        - "4000:4000"
+    command: node index.js
+    links:
+        - querydb

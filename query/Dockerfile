@@ -1,12 +1,12 @@
 FROM node:10-alpine
 
-WORKDIR /VizRec/query
+WORKDIR /query
 
-COPY package*.json ./
+COPY package*.json /query/
 
 RUN npm install
 
-COPY . /VizRec/query
+COPY . /query
 
 EXPOSE 4000
 
