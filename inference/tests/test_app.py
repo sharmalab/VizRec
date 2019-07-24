@@ -1,5 +1,5 @@
 import json
-from app.inference import app
+from app import app
 
 
 def test_uploadfile():
