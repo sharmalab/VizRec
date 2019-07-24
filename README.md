@@ -35,7 +35,7 @@ docker-compose up
 
 ## Contributing
 
-Feel free to send pull requests or any report any issues. We'll be glad to incorporate meaningful ones 
+Feel free to send pull requests or report any issues. We'll be glad to incorporate meaningful ones 
 
 ## License
 
