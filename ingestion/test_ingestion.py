@@ -1,5 +1,5 @@
 import json
-from app.ingest import app
+from app.ingestion import app
 import os
 import glob
 from flask.debughelpers import DebugFilesKeyError
