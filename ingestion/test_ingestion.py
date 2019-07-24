@@ -12,10 +12,10 @@ def test_uploadfile():
     response1 = client.get("/upload_file", data=json.dumps(dict(f='f')))
     assert response1.status_code == 405
     valids = ["json"]
-    data=dict()
-    data['file']='../query/examples/Zips/zips.json'
+    data = dict()
+    data['file'] = '../query/examples/Zips/zips.json'
     assert(glob.glob(os.getcwd() + '/**/' + data['file'], recursive=True))
-    assert(data['file'].split('/')[len(data['file'].split('/'))-1].split('.')[1] in valids)
+    assert(data['file'].split('/')[-1].split('.')[1] in valids)
     try:
         client.post('/upload_file', data=data)
     except DebugFilesKeyError as e:
