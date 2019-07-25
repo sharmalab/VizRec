@@ -37,11 +37,19 @@ Download **[mongo connector](https://www.mongodb.com/download-center/bi-connecto
 
 ## Gallery
 
-- Generate Schema
+### Generate Schema
 
-- Visualize
+![Schema](docs/_static/generate.gif)
 
-- Other Chart Types
+
+### Visualize
+
+![Visualize](docs/_static/visualize-1.gif)
+
+
+### Other Chart Types
+
+![Visualize](docs/_static/visualize-ii.gif)
 
 
 ## Contributing
