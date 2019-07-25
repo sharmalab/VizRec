@@ -1,16 +1,15 @@
 
-# Deep Learning Guided Visual Exploration of Data 
+# **VizRec**
 
  [![CircleCI](https://circleci.com/gh/sharmalab/VizRec.svg?style=svg)](https://circleci.com/gh/sharmalab/VizRec) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![HitCount](http://hits.dwyl.io/sharmalab/https://githubcom/sharmalab/VizRec.svg)](http://hits.dwyl.io/sharmalab/https://githubcom/sharmalab/VizRec)
+ 
+ Deep Learning Guided Visual Exploration of Data 
 
-## Description
+## Why VizRec
 
 VizRec recommends visualizations that are more interesting and efficient with the Deep Learning Models on well formatted input data.
 
 ## Quickstart Guide
-
-
-- Without running containers
 
 ```
 git clone https://github.com/sharmalab/VizRec.git
@@ -24,10 +23,9 @@ sudo npm install
 
 ```
 sudo npm run dev
-
 ```
 
-- With containers
+- With Docker
 
 ```
 git clone https://github.com/sharmalab/VizRec.git
@@ -35,8 +33,15 @@ docker-compose build
 docker-compose up
 ```
 
-- Download **[mongo connector](https://www.mongodb.com/download-center/bi-connector)** and run `bin/mongosqld` to run queries with sql 
+Download **[mongo connector](https://www.mongodb.com/download-center/bi-connector)** and run `bin/mongosqld` to run queries with sql 
 
+## Gallery
+
+- Generate Schema
+
+- Visualize
+
+- Other Chart Types
 
 
 ## Contributing
