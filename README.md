@@ -47,7 +47,7 @@ Download **[mongo connector](https://www.mongodb.com/download-center/bi-connecto
 ![Visualize](docs/_static/visualize-1.gif)
 
 
-#### Other Chart Types
+#### Chart Types
 
 ![Visualize](docs/_static/visualize-ii.gif)
 
