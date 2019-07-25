@@ -25,7 +25,7 @@ sudo npm install
 sudo npm run dev
 ```
 
-- With Docker
+ With Docker
 
 ```
 git clone https://github.com/sharmalab/VizRec.git
@@ -37,17 +37,17 @@ Download **[mongo connector](https://www.mongodb.com/download-center/bi-connecto
 
 ## Gallery
 
-### Generate Schema
+#### Generate Schema
 
 ![Schema](docs/_static/generate.gif)
 
 
-### Visualize
+#### Visualize
 
 ![Visualize](docs/_static/visualize-1.gif)
 
 
-### Other Chart Types
+#### Other Chart Types
 
 ![Visualize](docs/_static/visualize-ii.gif)
 
