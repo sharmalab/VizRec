@@ -1,5 +1,5 @@
 
-<h1 align="center">Deep Learning Guided Visual Exploration of Data</h1>
+# Deep Learning Guided Visual Exploration of Data 
 
  [![CircleCI](https://circleci.com/gh/sharmalab/VizRec.svg?style=svg)](https://circleci.com/gh/sharmalab/VizRec) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![HitCount](http://hits.dwyl.io/sharmalab/https://githubcom/sharmalab/VizRec.svg)](http://hits.dwyl.io/sharmalab/https://githubcom/sharmalab/VizRec)
 
@@ -18,9 +18,17 @@ pip install -r requirements.txt
 cd VizRec 
 python3 ingestion/run.py
 cd query/
-sudo npm run dev
+sudo npm install
+```
+- Update `.env` from *[docs](https://cube.dev/docs/connecting-to-the-database#configuring-connection-for-cube-js-cli-created-apps)*
 
 ```
+sudo npm run dev
+
+
+```
+- Download **[mongo connector](https://www.mongodb.com/download-center/bi-connector)** and run `bin/mongosqld` to run queries with sql 
+
 
 
 - With containers
@@ -31,7 +39,6 @@ docker-compose build
 docker-compose up
 ```
 
-- Download **[mongo connector](https://www.mongodb.com/download-center/bi-connector)** and run `bin/mongosqld` to run queries with sql 
 
 ## Contributing
 
