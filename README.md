@@ -20,16 +20,12 @@ python3 ingestion/run.py
 cd query/
 sudo npm install
 ```
-- Update `.env` from *[docs](https://cube.dev/docs/connecting-to-the-database#configuring-connection-for-cube-js-cli-created-apps)*
+- Update `.env` from *[cube.dev](https://cube.dev/docs/connecting-to-the-database#configuring-connection-for-cube-js-cli-created-apps)*
 
 ```
 sudo npm run dev
 
-
 ```
-- Download **[mongo connector](https://www.mongodb.com/download-center/bi-connector)** and run `bin/mongosqld` to run queries with sql 
-
-
 
 - With containers
 
@@ -38,6 +34,9 @@ git clone https://github.com/sharmalab/VizRec.git
 docker-compose build
 docker-compose up
 ```
+
+- Download **[mongo connector](https://www.mongodb.com/download-center/bi-connector)** and run `bin/mongosqld` to run queries with sql 
+
 
 
 ## Contributing
