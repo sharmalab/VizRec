@@ -63,5 +63,10 @@ def recommender():
         inference_request = []
         inference_request.append(json.dumps(request.json))
         for i in inference_request:
-            print(i)
+            try:
+                print(eval(i)['model_id'])
+                print(eval(i)['current_data_state'])
+                print(eval(i)['model_state'])
+            except KeyError:
+                return handle_bad_request('e')
         return ''.join(inference_request)
