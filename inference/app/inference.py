@@ -33,7 +33,6 @@ def allowed_filesize(filesize):
     else:
         return False
 
-
 @app.route("/upload_file", methods=["POST"])
 def uploadfile():
     if request.method == 'POST':
@@ -53,3 +52,15 @@ def uploadfile():
             return make_response(jsonify(f1.filename), 200)
         else:
             return handle_bad_request('e')
+
+
+@app.route("/recommender", methods=["POST"])
+def recommender():
+    if not request.json :
+        return handle_bad_request('e')
+    else:
+    	inference_request=[]
+    	inference_request.append(json.dumps(request.json))
+    	for i in inference_request:
+    		print(i)
+    	return ''.join(inference_request)
