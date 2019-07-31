@@ -34,6 +34,18 @@ def allowed_filesize(filesize):
         return False
 
 
+class Models(object):
+    """docstring for Models"""
+
+    def __init__(self, model_state, current_data_state, model_id):
+        self.model_state = model_state
+        self.current_data_state = current_data_state
+        self.model_id = model_id
+
+    def run(self, model_id):
+        pass
+
+
 @app.route("/upload_file", methods=["POST"])
 def uploadfile():
     if request.method == 'POST':
@@ -55,6 +67,12 @@ def uploadfile():
             return handle_bad_request('e')
 
 
+@app.route("/infered", methods=["POST"])
+def infered(inpt):
+    choices = inpt
+    return make_response(jsonify(choices), 200)
+
+
 @app.route("/recommender", methods=["POST"])
 def recommender():
     if not request.json:
@@ -64,9 +82,14 @@ def recommender():
         inference_request.append(json.dumps(request.json))
         for i in inference_request:
             try:
-                print(eval(i)['model_id'])
-                print(eval(i)['current_data_state'])
-                print(eval(i)['model_state'])
+                a, b, c = eval(i)['model_id'], eval(
+                    i)['current_data_state'], eval(i)['model_state']
+                print(type(eval(i)['model_id']))
+                if eval(i)['model_id'] in ['1', '2', '3', '4']:
+                    d = Models(a, b, c).run(eval(i)['model_id'])
+                    infered(d)
+                else:
+                    return handle_bad_request('e')
             except KeyError:
                 return handle_bad_request('e')
         return ''.join(inference_request)
