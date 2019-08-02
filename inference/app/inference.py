@@ -3,9 +3,16 @@ from flask import Flask, render_template, request, jsonify, make_response
 import werkzeug
 from werkzeug.utils import secure_filename
 import json
+import docker
+client = docker.from_env()
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.TestingConfig')
+
+# try:
+#    from json.decoder import JSONDecodeError
+# except ImportError:
+#    JSONDecodeError = ValueError
 
 
 @app.errorhandler(werkzeug.exceptions.BadRequest)
@@ -35,15 +42,29 @@ def allowed_filesize(filesize):
 
 
 class Models(object):
-    """docstring for Models"""
+    """Models"""
 
-    def __init__(self, model_state, current_data_state, model_id):
-        self.model_state = model_state
-        self.current_data_state = current_data_state
+    def __init__(self, model_id):
         self.model_id = model_id
+        self.model_type = ['docker', 'binary', 's3']
+        self.current_data_state = ''
+        self.model_state = ''
 
-    def run(self, model_id):
+    def execute(self, current_data_state, model_state):
         pass
+
+    def get_id(self):
+        return self.model_id
+
+
+class Registry(object):
+    """Registry"""
+
+    def __init__(self):
+        self.models_registry = ['vizml', 'vizrec', 'data2vis', 'draco']
+
+    def get(self):
+        return self.models_registry[Models(self.model_id).get_id()]
 
 
 @app.route("/upload_file", methods=["POST"])
