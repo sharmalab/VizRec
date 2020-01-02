@@ -13,8 +13,8 @@ VizRec recommends visualizations that are more interesting and efficient with th
 
 ```
 git clone https://github.com/sharmalab/VizRec.git
-pip install -r requirements.txt
 cd VizRec 
+pip install -r requirements.txt
 python3 ingestion/run.py
 cd query/
 sudo npm install
